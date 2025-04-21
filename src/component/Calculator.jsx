@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react"; 
 
 export default function Calculator() {
-
+  // State for form inputs and result
   const [firstNumber, setFirstNumber] = useState('');
   const [secondNumber, setSecondNumber] = useState('');
   const [operation, setOperation] = useState('add');
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
- 
+  // useEffect to log result whenever it changes
   useEffect(() => {
     if (result !== null) {
       console.log('Calculation result:', result);
     }
   }, [result]);
 
- 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     
- 
+    // Validate inputs
     if (firstNumber === '' || secondNumber === '') {
       setError('Please enter both numbers');
       return;
@@ -34,7 +34,7 @@ export default function Calculator() {
       return;
     }
     
-   
+    // Perform calculation based on selected operation
     let calculationResult;
     switch (operation) {
       case 'add':
@@ -58,7 +58,8 @@ export default function Calculator() {
     }
     
    
-    setResult(Math.round(calculationResult * 10000) / 10000);
+    setResult(calculationResult);
+
   };
 
   return (
